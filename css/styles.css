@@ -792,6 +792,10 @@ main {
     margin-top: var(--space-16);
 }
 
+.componente-grupo > h3 {
+    margin-bottom: var(--space-5);
+}
+
 .componente-grupo > h4 {
     margin-top: var(--space-10);
     margin-bottom: var(--space-5);
@@ -1013,10 +1017,21 @@ main {
     .seccion--inicio {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto;
+        align-content: center;
         align-items: center;
         justify-items: start;
-        column-gap: var(--space-16);
+        gap: var(--space-6) var(--space-16);
         text-align: left;
+    }
+
+    /* Texto en la columna izquierda; el avatar ocupa la derecha a lo alto del bloque */
+    .seccion--inicio > * {
+        grid-column: 1;
+    }
+
+    .seccion--inicio > .avatar {
+        grid-column: 2;
+        grid-row: 1 / span 4;
     }
 
     .inicio__intro {
