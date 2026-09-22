@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio personal de Josué, desarrollador web.">
+    <title>Josué — Web Developer</title>
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_EC">
+    <meta property="og:title" content="Josué — Web Developer">
+    <meta property="og:description" content="Portfolio personal de Josué, desarrollador web.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d10'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-size='20' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EJ%3C/text%3E%3C/svg%3E">
+    <!-- Se ejecuta antes de pintar: marca JS activo y aplica el tema guardado (evita el parpadeo) -->
+    <script>
+        (function () {
+            var raiz = document.documentElement;
+            var tema = null;
+            raiz.classList.add('js');
+            try { tema = window.localStorage.getItem('tema'); } catch (e) { /* almacenamiento bloqueado */ }
+            if (tema !== 'light' && tema !== 'dark') {
+                tema = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+            raiz.dataset.theme = tema;
+        })();
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Sprite de iconos (se usan con <use>; heredan color y trazo del CSS) -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="icono-html" viewBox="0 0 24 24">
+            <polyline points="8 6 2 12 8 18"></polyline>
+            <polyline points="16 6 22 12 16 18"></polyline>
+            <line x1="14" y1="4" x2="10" y2="20"></line>
+        </symbol>
+        <symbol id="icono-css" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="9" x2="9" y2="21"></line>
+        </symbol>
+        <symbol id="icono-js" viewBox="0 0 24 24">
+            <path d="M8 3H6a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2 2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2"></path>
+            <path d="M16 3h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2 2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2"></path>
+        </symbol>
+        <symbol id="icono-python" viewBox="0 0 24 24">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+        </symbol>
+        <symbol id="icono-django" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="7"></rect>
+            <rect x="3" y="14" width="18" height="7"></rect>
+            <line x1="7" y1="6.5" x2="7.01" y2="6.5"></line>
+            <line x1="7" y1="17.5" x2="7.01" y2="17.5"></line>
+        </symbol>
+    </svg>
+
+    <!-- Enlace de salto para accesibilidad: permite omitir la navegación -->
+    <a class="enlace-de-salto" href="#contenido">Saltar al contenido principal</a>
+
+    <header class="cabecera">
+        <p class="marca">
+            <a href="#inicio">Web Portfolio</a>
+        </p>
+
+        <!-- Navegación principal del sitio: enlaces ancla a cada sección -->
+        <nav id="menu-navegacion" class="navegacion" aria-label="Navegación principal">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#componentes">Componentes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <!-- Controles de la cabecera: tema y menú móvil -->
+        <div class="cabecera__controles">
+            <button type="button" class="menu-toggle" aria-controls="menu-navegacion" aria-expanded="false" aria-label="Abrir menú de navegación">
+                <svg class="menu-toggle__icono menu-toggle__icono--abrir" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+                <svg class="menu-toggle__icono menu-toggle__icono--cerrar" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <line x1="5" y1="5" x2="19" y2="19"></line>
+                    <line x1="19" y1="5" x2="5" y2="19"></line>
+                </svg>
+            </button>
+
+            <button type="button" class="cambiar-tema" aria-pressed="false" aria-label="Cambiar a tema claro">
+                <svg class="cambiar-tema__icono cambiar-tema__sol" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="4"></line>
+                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                    <line x1="4.2" y1="4.2" x2="6.3" y2="6.3"></line>
+                    <line x1="2" y1="12" x2="5" y2="12"></line>
+                    <line x1="19" y1="12" x2="22" y2="12"></line>
+                    <line x1="17.7" y1="17.7" x2="19.8" y2="19.8"></line>
+                    <line x1="6.3" y1="17.7" x2="4.2" y2="19.8"></line>
+                </svg>
+                <svg class="cambiar-tema__icono cambiar-tema__luna" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="contenido">
+
+        <!-- 1. HOME / INTRODUCCIÓN -->
+        <section id="inicio" class="seccion seccion--inicio" aria-labelledby="inicio-titulo">
+            <h1 id="inicio-titulo">Hola, soy Josué</h1>
+            <p class="inicio__perfil">Web Developer</p>
+            <p class="inicio__intro">
+                Párrafo de presentación breve: quién eres, a qué te dedicas
+                y qué buscas. (Texto pendiente de editar)
+            </p>
+
+            <!-- Fotografía de perfil: pendiente de añadir la imagen -->
+            <figure class="avatar">
+                <img src="images/foto-perfil.jpg" alt="Fotografía de perfil de Josué (pendiente de añadir)">
+                <figcaption>Josué — Web Developer</figcaption>
+            </figure>
+
+            <!-- Llamadas a la acción hacia otras secciones -->
+            <p class="inicio__acciones">
+                <a href="#proyectos" class="btn btn--primario">Ver proyectos</a>
+                <a href="#contacto" class="btn btn--secundario">Contáctame</a>
+            </p>
+        </section>
+
+        <!-- 2. SOBRE MÍ -->
+        <section id="sobre-mi" class="seccion seccion--sobre-mi" aria-labelledby="sobre-mi-titulo">
+            <h2 id="sobre-mi-titulo">Sobre mí</h2>
+
+            <p>
+                Descripción profesional breve: intereses, enfoque y objetivo
+                profesional. (Texto pendiente de editar)
+            </p>
+
+            <!-- Solo una mención breve del historial académico -->
+            <h3>Formación académica</h3>
+            <p>
+                Mención breve de tu formación o intereses académicos.
+                (Texto pendiente de editar)
+            </p>
+        </section>
+
+        <!-- 3. HABILIDADES -->
+        <section id="habilidades" class="seccion seccion--habilidades" aria-labelledby="habilidades-titulo">
+            <h2 id="habilidades-titulo">Habilidades</h2>
+
+            <!-- Habilidades agrupadas por categoría (sin niveles: solo lo que se puede justificar) -->
+            <h3>Frontend</h3>
+            <ul class="habilidades__lista">
+                <li class="habilidades__item badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-html"></use></svg>HTML</li>
+                <li class="habilidades__item badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-css"></use></svg>CSS</li>
+                <li class="habilidades__item badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-js"></use></svg>JavaScript</li>
+            </ul>
+
+            <h3>Backend</h3>
+            <ul class="habilidades__lista">
+                <li class="habilidades__item badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-python"></use></svg>Python</li>
+                <li class="habilidades__item badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-django"></use></svg>Django</li>
+            </ul>
+        </section>
+
+        <!-- 4. PROYECTOS DESTACADOS -->
+        <section id="proyectos" class="seccion seccion--proyectos" aria-labelledby="proyectos-titulo">
+            <h2 id="proyectos-titulo">Proyectos destacados</h2>
+
+            <!-- Cada proyecto es una tarjeta (article) reutilizable.
+                 Los nombres y textos son marcadores de posición; edítalos tú. -->
+            <ul class="proyectos__lista">
+
+                <li>
+                    <article class="proyecto">
+                        <h3>Nombre del Proyecto 1</h3>
+                        <p>Descripción breve del proyecto y de lo que hace.</p>
+                        <p><strong>Problema que resuelve:</strong> descripción del problema o necesidad cubierta.</p>
+
+                        <h4>Tecnologías</h4>
+                        <ul class="proyecto__tecnologias">
+                            <li>Tecnología 1</li>
+                            <li>Tecnología 2</li>
+                            <li>Tecnología 3</li>
+                        </ul>
+
+                        <!-- Enlaces a rellenar cuando existan -->
+                        <div class="proyecto__enlaces">
+                            <a href="#" rel="noopener noreferrer">Ver repositorio</a>
+                            <a href="#" rel="noopener noreferrer">Ver proyecto en vivo</a>
+                        </div>
+                    </article>
+                </li>
+
+                <li>
+                    <article class="proyecto">
+                        <h3>Nombre del Proyecto 2</h3>
+                        <p>Descripción breve del proyecto y de lo que hace.</p>
+                        <p><strong>Problema que resuelve:</strong> descripción del problema o necesidad cubierta.</p>
+
+                        <h4>Tecnologías</h4>
+                        <ul class="proyecto__tecnologias">
+                            <li>Tecnología 1</li>
+                            <li>Tecnología 2</li>
+                            <li>Tecnología 3</li>
+                        </ul>
+
+                        <div class="proyecto__enlaces">
+                            <a href="#" rel="noopener noreferrer">Ver repositorio</a>
+                            <a href="#" rel="noopener noreferrer">Ver proyecto en vivo</a>
+                        </div>
+                    </article>
+                </li>
+
+                <li>
+                    <article class="proyecto">
+                        <h3>Nombre del Proyecto 3</h3>
+                        <p>Descripción breve del proyecto y de lo que hace.</p>
+                        <p><strong>Problema que resuelve:</strong> descripción del problema o necesidad cubierta.</p>
+
+                        <h4>Tecnologías</h4>
+                        <ul class="proyecto__tecnologias">
+                            <li>Tecnología 1</li>
+                            <li>Tecnología 2</li>
+                            <li>Tecnología 3</li>
+                        </ul>
+
+                        <div class="proyecto__enlaces">
+                            <a href="#" rel="noopener noreferrer">Ver repositorio</a>
+                            <a href="#" rel="noopener noreferrer">Ver proyecto en vivo</a>
+                        </div>
+                    </article>
+                </li>
+
+            </ul>
+        </section>
+
+        <!-- 5. DESIGN SYSTEM / COMPONENTES -->
+        <section id="componentes" class="seccion seccion--componentes" aria-labelledby="componentes-titulo">
+            <h2 id="componentes-titulo">Design System / Componentes</h2>
+
+            <p>
+                Documentación del sistema visual y de los componentes reutilizables
+                que se usan en todo el sitio. Cada ejemplo muestra el mismo
+                componente real del portfolio, no copias aisladas.
+            </p>
+
+            <!-- 5.1 Colores: cada muestra usa la misma variable que define el token -->
+            <div class="componente-grupo">
+                <h3>Colores</h3>
+                <ul class="paleta">
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--fondo" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Background</span>
+                        <code class="paleta__valor">--color-background</code>
+                        <code class="paleta__valor" data-token="--color-background">#0B0D10</code>
+                    </li>
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--superficie" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Surface</span>
+                        <code class="paleta__valor">--color-surface</code>
+                        <code class="paleta__valor" data-token="--color-surface">#14171C</code>
+                    </li>
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--elevada" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Surface elevada</span>
+                        <code class="paleta__valor">--color-surface-elevated</code>
+                        <code class="paleta__valor" data-token="--color-surface-elevated">#1C2027</code>
+                    </li>
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--borde" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Borde</span>
+                        <code class="paleta__valor">--color-border</code>
+                        <code class="paleta__valor" data-token="--color-border">#2A2F37</code>
+                    </li>
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--texto" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Texto</span>
+                        <code class="paleta__valor">--color-text</code>
+                        <code class="paleta__valor" data-token="--color-text">#F1F3F6</code>
+                    </li>
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--texto-atenuado" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Texto atenuado</span>
+                        <code class="paleta__valor">--color-text-muted</code>
+                        <code class="paleta__valor" data-token="--color-text-muted">#98A1AC</code>
+                    </li>
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--primario" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Primario</span>
+                        <code class="paleta__valor">--color-primary</code>
+                        <code class="paleta__valor" data-token="--color-primary">#FFFFFF</code>
+                    </li>
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--secundario" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Secundario</span>
+                        <code class="paleta__valor">--color-secondary</code>
+                        <code class="paleta__valor" data-token="--color-secondary">#8A939E</code>
+                    </li>
+                    <li class="paleta__color">
+                        <span class="paleta__chip paleta__chip--error" aria-hidden="true"></span>
+                        <span class="paleta__nombre">Error</span>
+                        <code class="paleta__valor">--color-danger</code>
+                        <code class="paleta__valor" data-token="--color-danger">#FF9B8F</code>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 5.2 Tipografía -->
+            <div class="componente-grupo">
+                <h3>Tipografía</h3>
+                <div class="muestras-tipografia">
+                    <div class="muestra-tipografia">
+                        <span class="muestra-tipografia__etiqueta">h1</span>
+                        <p class="estilo-h1">Título de primer nivel</p>
+                    </div>
+                    <div class="muestra-tipografia">
+                        <span class="muestra-tipografia__etiqueta">h2</span>
+                        <p class="estilo-h2">Título de segundo nivel</p>
+                    </div>
+                    <div class="muestra-tipografia">
+                        <span class="muestra-tipografia__etiqueta">h3</span>
+                        <p class="estilo-h3">Título de tercer nivel</p>
+                    </div>
+                    <div class="muestra-tipografia">
+                        <span class="muestra-tipografia__etiqueta">h4</span>
+                        <p class="estilo-h4">Título de cuarto nivel</p>
+                    </div>
+                    <div class="muestra-tipografia">
+                        <span class="muestra-tipografia__etiqueta">p</span>
+                        <p>Párrafo de cuerpo. Se usa para descripciones, biografía y textos generales.</p>
+                    </div>
+                    <div class="muestra-tipografia">
+                        <span class="muestra-tipografia__etiqueta">p</span>
+                        <p class="texto-muted">Texto secundario. Ideal para etiquetas, notas y metadatos.</p>
+                    </div>
+                    <div class="muestra-tipografia">
+                        <span class="muestra-tipografia__etiqueta">a</span>
+                        <a href="#inicio">Enlace de texto con subrayado</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5.3 Espaciado -->
+            <div class="componente-grupo">
+                <h3>Espaciado</h3>
+                <ul class="muestras-espaciado">
+                    <li class="muestra-espaciado">
+                        <code class="muestra-espaciado__etiqueta">--space-2</code>
+                        <span class="muestra-espaciado__barra muestra-espaciado__barra--2" aria-hidden="true"></span>
+                        <code>0.5rem</code>
+                    </li>
+                    <li class="muestra-espaciado">
+                        <code class="muestra-espaciado__etiqueta">--space-4</code>
+                        <span class="muestra-espaciado__barra muestra-espaciado__barra--4" aria-hidden="true"></span>
+                        <code>1rem</code>
+                    </li>
+                    <li class="muestra-espaciado">
+                        <code class="muestra-espaciado__etiqueta">--space-6</code>
+                        <span class="muestra-espaciado__barra muestra-espaciado__barra--6" aria-hidden="true"></span>
+                        <code>1.5rem</code>
+                    </li>
+                    <li class="muestra-espaciado">
+                        <code class="muestra-espaciado__etiqueta">--space-8</code>
+                        <span class="muestra-espaciado__barra muestra-espaciado__barra--8" aria-hidden="true"></span>
+                        <code>2rem</code>
+                    </li>
+                    <li class="muestra-espaciado">
+                        <code class="muestra-espaciado__etiqueta">--space-16</code>
+                        <span class="muestra-espaciado__barra muestra-espaciado__barra--16" aria-hidden="true"></span>
+                        <code>4rem</code>
+                    </li>
+                    <li class="muestra-espaciado">
+                        <code class="muestra-espaciado__etiqueta">--space-20</code>
+                        <span class="muestra-espaciado__barra muestra-espaciado__barra--20" aria-hidden="true"></span>
+                        <code>5rem</code>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 5.4 Componentes reutilizables (los mismos que usa el sitio) -->
+            <div class="componente-grupo">
+                <h3>Componentes</h3>
+
+                <!-- Botones: misma clase .btn usada en el hero y el formulario -->
+                <h4>Botones</h4>
+                <div class="muestras-componentes">
+                    <button type="button" class="btn btn--primario">Botón primario</button>
+                    <button type="button" class="btn btn--secundario">Botón secundario</button>
+                    <a href="#inicio" class="btn btn--enlace">Enlace con estilo de botón</a>
+                </div>
+
+                <!-- Tarjeta de proyecto: misma clase .proyecto de la sección Proyectos -->
+                <h4>Tarjeta de proyecto</h4>
+                <div class="muestras-componentes">
+                    <article class="proyecto">
+                        <h5>Nombre del proyecto</h5>
+                        <p>Descripción breve del proyecto y de lo que hace.</p>
+                        <p><strong>Problema que resuelve:</strong> descripción del problema o necesidad cubierta.</p>
+                        <h6>Tecnologías</h6>
+                        <ul class="proyecto__tecnologias">
+                            <li>Tecnología 1</li>
+                            <li>Tecnología 2</li>
+                            <li>Tecnología 3</li>
+                        </ul>
+                        <div class="proyecto__enlaces">
+                            <a href="#" rel="noopener noreferrer">Ver repositorio</a>
+                            <a href="#" rel="noopener noreferrer">Ver demo</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Badge / habilidad: misma clase .badge de la sección Habilidades -->
+                <h4>Badge / habilidad</h4>
+                <div class="muestras-componentes">
+                    <span class="badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-html"></use></svg>HTML</span>
+                    <span class="badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-css"></use></svg>CSS</span>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">Git</span>
+                </div>
+
+                <!-- Campos de formulario: misma estructura que el formulario de contacto -->
+                <h4>Campos de formulario</h4>
+                <div class="formulario muestras-formulario">
+                    <div class="formulario__campo">
+                        <label for="muestra-nombre">Nombre</label>
+                        <input type="text" id="muestra-nombre" name="muestra-nombre" placeholder="Tu nombre">
+                    </div>
+                    <div class="formulario__campo">
+                        <label for="muestra-correo">Correo electrónico</label>
+                        <input type="email" id="muestra-correo" name="muestra-correo" placeholder="tucorreo@ejemplo.com">
+                    </div>
+                    <div class="formulario__campo formulario__campo--ancho-completo">
+                        <label for="muestra-mensaje">Mensaje (textarea)</label>
+                        <textarea id="muestra-mensaje" name="muestra-mensaje" rows="4" placeholder="Escribe tu mensaje..."></textarea>
+                    </div>
+                    <div class="formulario__campo formulario__campo--ancho-completo">
+                        <label for="muestra-error">Campo con error</label>
+                        <input type="email" id="muestra-error" name="muestra-error" value="correo-invalido" aria-invalid="true" aria-describedby="muestra-error-mensaje">
+                        <p class="formulario__error" id="muestra-error-mensaje">Introduce un correo válido, por ejemplo nombre@dominio.com.</p>
+                    </div>
+                </div>
+
+                <!-- Navegación: misma markup de la cabecera -->
+                <h4>Navegación</h4>
+                <div class="muestras-componentes">
+                    <nav class="navegacion" aria-label="Muestra de navegación">
+                        <ul>
+                            <li><a href="#inicio">Inicio</a></li>
+                            <li><a href="#sobre-mi">Sobre mí</a></li>
+                            <li><a href="#proyectos">Proyectos</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACTO -->
+        <section id="contacto" class="seccion seccion--contacto" aria-labelledby="contacto-titulo">
+            <h2 id="contacto-titulo">Contacto</h2>
+
+            <p>
+                Cuéntame sobre tu proyecto o escríbeme cualquier duda.
+                (El envío real aún no está conectado a un servidor.)
+            </p>
+
+            <!-- Datos de contacto profesional -->
+            <address class="contacto__datos">
+                <ul class="contacto__lista">
+                    <li>
+                        <span class="contacto__etiqueta">Correo</span>
+                        <a href="mailto:ecercadom@unemi.edu.ec">ecercadom@unemi.edu.ec</a>
+                    </li>
+                    <li>
+                        <span class="contacto__etiqueta">GitHub</span>
+                        <a href="https://github.com/EdJosueCM" target="_blank" rel="noopener noreferrer">github.com/EdJosueCM</a>
+                    </li>
+                </ul>
+            </address>
+
+            <!-- Formulario semántico: validación nativa + mensajes propios con JS (js/index.js) -->
+            <form class="formulario" action="#" method="post">
+
+                <div class="formulario__campo">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" minlength="2" required>
+                </div>
+
+                <div class="formulario__campo">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" autocomplete="email" required>
+                </div>
+
+                <div class="formulario__campo formulario__campo--ancho-completo">
+                    <label for="asunto">Asunto</label>
+                    <input type="text" id="asunto" name="asunto" placeholder="Motivo del mensaje" minlength="3" required>
+                </div>
+
+                <div class="formulario__campo formulario__campo--ancho-completo">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe tu mensaje aquí..." minlength="10" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn--primario">Enviar mensaje</button>
+                <p class="formulario__estado" role="status"></p>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="pie-de-pagina">
+        <p>&copy; 2026 Josué — Web Developer. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/index.js" defer></script>
+</body>
+</html>
