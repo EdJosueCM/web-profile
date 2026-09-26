@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio personal de Josué, desarrollador web.">
-    <title>Josué — Web Developer</title>
+    <meta name="description" content="Portfolio personal de Josué">
+    <title>Josué — Web Portfolio</title>
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_EC">
-    <meta property="og:title" content="Josué — Web Developer">
-    <meta property="og:description" content="Portfolio personal de Josué, desarrollador web.">
+    <meta property="og:title" content="Josué — Web Portfolio">
+    <meta property="og:description" content="Portfolio personal de Josué">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d10'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-size='20' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EJ%3C/text%3E%3C/svg%3E">
-    <!-- Se ejecuta antes de pintar: marca JS activo y aplica el tema guardado (evita el parpadeo) -->
     <script>
         (function () {
             var raiz = document.documentElement;
             var tema = null;
             raiz.classList.add('js');
-            try { tema = window.localStorage.getItem('tema'); } catch (e) { /* almacenamiento bloqueado */ }
+            try { tema = window.localStorage.getItem('tema'); } catch (e) { }
             if (tema !== 'light' && tema !== 'dark') {
                 tema = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
             }
@@ -27,7 +26,6 @@
 </head>
 
 <body>
-    <!-- Sprite de iconos (se usan con <use>; heredan color y trazo del CSS) -->
     <svg class="sprite" aria-hidden="true" focusable="false">
         <symbol id="icono-html" viewBox="0 0 24 24">
             <polyline points="8 6 2 12 8 18"></polyline>
@@ -55,7 +53,6 @@
         </symbol>
     </svg>
 
-    <!-- Enlace de salto para accesibilidad: permite omitir la navegación -->
     <a class="enlace-de-salto" href="#contenido">Saltar al contenido principal</a>
 
     <header class="cabecera">
@@ -63,7 +60,6 @@
             <a href="#inicio">Web Portfolio</a>
         </p>
 
-        <!-- Navegación principal del sitio: enlaces ancla a cada sección -->
         <nav id="menu-navegacion" class="navegacion" aria-label="Navegación principal">
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
@@ -75,7 +71,6 @@
             </ul>
         </nav>
 
-        <!-- Controles de la cabecera: tema y menú móvil -->
         <div class="cabecera__controles">
             <button type="button" class="menu-toggle" aria-controls="menu-navegacion" aria-expanded="false" aria-label="Abrir menú de navegación">
                 <svg class="menu-toggle__icono menu-toggle__icono--abrir" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -109,29 +104,25 @@
 
     <main id="contenido">
 
-        <!-- 1. HOME / INTRODUCCIÓN -->
         <section id="inicio" class="seccion seccion--inicio" aria-labelledby="inicio-titulo">
             <h1 id="inicio-titulo">Hola, soy Josué</h1>
-            <p class="inicio__perfil">Web Developer</p>
+            <p class="inicio__perfil">Ingenieria en Software</p>
             <p class="inicio__intro">
-                Párrafo de presentación breve: quién eres, a qué te dedicas
-                y qué buscas. (Texto pendiente de editar)
+                Estudiante de Ingeniería en Software, apasionado por el desarrollo web y la creación de soluciones innovadoras.
+                Me especializo en el desarrollo de aplicaciones web utilizando tecnologías modernas y enfoques centrados en el usuario.
             </p>
 
-            <!-- Fotografía de perfil: pendiente de añadir la imagen -->
             <figure class="avatar">
                 <img src="images/foto-perfil.jpg" alt="Fotografía de perfil de Josué (pendiente de añadir)">
                 <figcaption>Josué — Web Developer</figcaption>
             </figure>
 
-            <!-- Llamadas a la acción hacia otras secciones -->
             <p class="inicio__acciones">
                 <a href="#proyectos" class="btn btn--primario">Ver proyectos</a>
                 <a href="#contacto" class="btn btn--secundario">Contáctame</a>
             </p>
         </section>
 
-        <!-- 2. SOBRE MÍ -->
         <section id="sobre-mi" class="seccion seccion--sobre-mi" aria-labelledby="sobre-mi-titulo">
             <h2 id="sobre-mi-titulo">Sobre mí</h2>
 
@@ -140,19 +131,16 @@
                 profesional. (Texto pendiente de editar)
             </p>
 
-            <!-- Solo una mención breve del historial académico -->
             <h3>Formación académica</h3>
             <p>
-                Mención breve de tu formación o intereses académicos.
-                (Texto pendiente de editar)
+                Cursando Ingeniería en Software en la Universidad Estatal de Milagro (UNEMI).
+
             </p>
         </section>
 
-        <!-- 3. HABILIDADES -->
         <section id="habilidades" class="seccion seccion--habilidades" aria-labelledby="habilidades-titulo">
             <h2 id="habilidades-titulo">Habilidades</h2>
 
-            <!-- Habilidades agrupadas por categoría (sin niveles: solo lo que se puede justificar) -->
             <h3>Frontend</h3>
             <ul class="habilidades__lista">
                 <li class="habilidades__item badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-html"></use></svg>HTML</li>
@@ -167,12 +155,9 @@
             </ul>
         </section>
 
-        <!-- 4. PROYECTOS DESTACADOS -->
         <section id="proyectos" class="seccion seccion--proyectos" aria-labelledby="proyectos-titulo">
             <h2 id="proyectos-titulo">Proyectos destacados</h2>
 
-            <!-- Cada proyecto es una tarjeta (article) reutilizable.
-                 Los nombres y textos son marcadores de posición; edítalos tú. -->
             <ul class="proyectos__lista">
 
                 <li>
@@ -191,7 +176,6 @@
                             <li>SQLite</li>
                         </ul>
 
-                        <!-- Sin versión desplegada por ahora: solo enlace al repositorio -->
                         <div class="proyecto__enlaces">
                             <a href="https://github.com/EdJosueCM/InventFast-final" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
                         </div>
@@ -201,13 +185,14 @@
                 <li>
                     <article class="proyecto">
                         <h3>Sistema Medico</h3>
-                        <p>Descripción breve del proyecto y de lo que hace.</p>
-                        <p><strong>Problema que resuelve:</strong> descripción del problema o necesidad cubierta.</p>
+                        <p>Sistema medico que gestiona pacientes, citas y registros medicos.</p>
+                        <p><strong>Problema que resuelve:</strong> Ayuda a gestionar la información de los pacientes, tener un historial médico y agendar citas médicas.</p>
 
                         <h4>Tecnologías</h4>
                         <ul class="proyecto__tecnologias">
                             <li>Python</li>
                             <li>Django</li>
+                            <li>Tailwind CSS</li>
                             <li>SQLite</li>
                         </ul>
 
@@ -221,7 +206,6 @@
                     <article class="proyecto">
                         <h3>Flag CLI</h3>
                         <p>Adivina a que país pertenece la bandera en la terminal</p>
-                        <p><strong>Problema que resuelve:</strong> </p>
 
                         <h4>Tecnologías</h4>
                         <ul class="proyecto__tecnologias">
@@ -237,7 +221,6 @@
             </ul>
         </section>
 
-        <!-- 5. DESIGN SYSTEM / COMPONENTES -->
         <section id="componentes" class="seccion seccion--componentes" aria-labelledby="componentes-titulo">
             <h2 id="componentes-titulo">Design System / Componentes</h2>
 
@@ -247,7 +230,6 @@
                 componente real del portfolio, no copias aisladas.
             </p>
 
-            <!-- 5.1 Colores: cada muestra usa la misma variable que define el token -->
             <div class="componente-grupo">
                 <h3>Colores</h3>
                 <ul class="paleta">
@@ -308,7 +290,6 @@
                 </ul>
             </div>
 
-            <!-- 5.2 Tipografía -->
             <div class="componente-grupo">
                 <h3>Tipografía</h3>
                 <div class="muestras-tipografia">
@@ -343,7 +324,6 @@
                 </div>
             </div>
 
-            <!-- 5.3 Espaciado -->
             <div class="componente-grupo">
                 <h3>Espaciado</h3>
                 <ul class="muestras-espaciado">
@@ -380,11 +360,9 @@
                 </ul>
             </div>
 
-            <!-- 5.4 Componentes reutilizables (los mismos que usa el sitio) -->
             <div class="componente-grupo">
                 <h3>Componentes</h3>
 
-                <!-- Botones: misma clase .btn usada en el hero y el formulario -->
                 <h4>Botones</h4>
                 <div class="muestras-componentes">
                     <button type="button" class="btn btn--primario">Botón primario</button>
@@ -392,7 +370,6 @@
                     <a href="#inicio" class="btn btn--enlace">Enlace con estilo de botón</a>
                 </div>
 
-                <!-- Tarjeta de proyecto: misma clase .proyecto de la sección Proyectos -->
                 <h4>Tarjeta de proyecto</h4>
                 <div class="muestras-componentes">
                     <article class="proyecto">
@@ -412,7 +389,6 @@
                     </article>
                 </div>
 
-                <!-- Badge / habilidad: misma clase .badge de la sección Habilidades -->
                 <h4>Badge / habilidad</h4>
                 <div class="muestras-componentes">
                     <span class="badge"><svg class="badge__icono" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><use href="#icono-html"></use></svg>HTML</span>
@@ -421,7 +397,6 @@
                     <span class="badge">Git</span>
                 </div>
 
-                <!-- Campos de formulario: misma estructura que el formulario de contacto -->
                 <h4>Campos de formulario</h4>
                 <div class="formulario muestras-formulario">
                     <div class="formulario__campo">
@@ -443,7 +418,6 @@
                     </div>
                 </div>
 
-                <!-- Navegación: misma markup de la cabecera -->
                 <h4>Navegación</h4>
                 <div class="muestras-componentes">
                     <nav class="navegacion" aria-label="Muestra de navegación">
@@ -457,7 +431,6 @@
             </div>
         </section>
 
-        <!-- 6. CONTACTO -->
         <section id="contacto" class="seccion seccion--contacto" aria-labelledby="contacto-titulo">
             <h2 id="contacto-titulo">Contacto</h2>
 
@@ -466,7 +439,6 @@
                 (El envío real aún no está conectado a un servidor.)
             </p>
 
-            <!-- Datos de contacto profesional -->
             <address class="contacto__datos">
                 <ul class="contacto__lista">
                     <li>
@@ -480,7 +452,6 @@
                 </ul>
             </address>
 
-            <!-- Formulario semántico: validación nativa + mensajes propios con JS (js/index.js) -->
             <form class="formulario" action="#" method="post">
 
                 <div class="formulario__campo">

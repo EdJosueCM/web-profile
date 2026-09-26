@@ -1,34 +1,6 @@
-/* ============================================================================
-   PORTFOLIO — Hoja de estilos principal
-   Tema: oscuro monocromo · Mobile-first · Solo CSS (sin frameworks ni JS)
-   ----------------------------------------------------------------------------
-   Índice:
-   1. Custom properties (tokens del sistema de diseño)
-   2. Reset y base
-   3. Accesibilidad y foco
-   4. Utilidades de texto
-   5. Enlace de salto
-   6. Cabecera y navegación
-   7. Botones (.btn)
-   8. Secciones y hero
-   9. Avatar
-   10. Habilidades / badges
-   11. Tarjeta de proyecto (.proyecto)
-   12. Formularios y contacto
-   13. Galería del sistema de diseño (#componentes)
-   14. Pie de página
-   15. Interacciones (revelado al hacer scroll)
-   16. Responsive
-   17. Movimiento reducido
-   ========================================================================== */
-
-/* ==========================================================================
-   1. CUSTOM PROPERTIES
-   ========================================================================== */
 :root {
     color-scheme: dark;
 
-    /* Colores — monocromo (escala neutra, blanco como acento) */
     --color-background: #0b0d10;
     --color-surface: #14171c;
     --color-surface-elevated: #1c2027;
@@ -47,7 +19,6 @@
     --color-chip-outline: rgb(255 255 255 / 0.08);
     --color-header-bg: rgb(11 13 16 / 0.85);
 
-    /* Tipografía */
     --font-primary: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
@@ -62,7 +33,6 @@
     --line-height-body: 1.6;
     --line-height-heading: 1.15;
 
-    /* Espaciado */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 0.75rem;
@@ -76,34 +46,27 @@
     --space-20: 5rem;
     --section-padding: clamp(3rem, 8vw, 5rem);
 
-    /* Bordes y radios (cuadrados por diseño; --radius-full solo para el avatar) */
     --radius-sm: 0;
     --radius-md: 0;
     --radius-lg: 0;
     --radius-xl: 0;
-    --radius-full: 9999px;
 
-    /* Sombras */
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
     --shadow-card: 0 4px 16px rgb(0 0 0 / 0.35);
     --shadow-hover: 0 8px 24px rgb(0 0 0 / 0.45);
 
-    /* Tamaños relevantes */
     --container-width: 70rem;
     --page-gutter: max(1.5rem, calc((100vw - var(--container-width)) / 2));
     --header-height: 4rem;
     --input-height: 2.75rem;
     --swatch-size: 4.5rem;
 
-    /* Transiciones */
     --transition-fast: 150ms ease;
     --transition-base: 250ms ease;
 
-    /* Capas */
     --z-header: 100;
 }
 
-/* Tema claro: redefine los tokens de color; el resto del CSS se adapta solo */
 :root[data-theme="light"] {
     color-scheme: light;
 
@@ -126,9 +89,6 @@
     --color-header-bg: rgb(244 246 249 / 0.85);
 }
 
-/* ==========================================================================
-   2. RESET Y BASE
-   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -168,7 +128,6 @@ h4, .estilo-h4 { font-size: var(--text-lg); font-weight: 600; }
 h5 { font-size: var(--text-xl); }
 h6 { font-size: var(--text-lg); font-weight: 600; }
 
-/* Muestras de tipografía: mismo aspecto que h1–h4 sin añadir encabezados al documento */
 .estilo-h1, .estilo-h2, .estilo-h3, .estilo-h4 {
     color: var(--color-text);
     line-height: var(--line-height-heading);
@@ -225,25 +184,16 @@ button {
     color: var(--color-primary-text);
 }
 
-/* ==========================================================================
-   3. ACCESIBILIDAD Y FOCO
-   ========================================================================== */
 :focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
     border-radius: var(--radius-sm);
 }
 
-/* ==========================================================================
-   4. UTILIDADES DE TEXTO
-   ========================================================================== */
 .texto-muted {
     color: var(--color-text-muted);
 }
 
-/* ==========================================================================
-   5. ENLACE DE SALTO
-   ========================================================================== */
 .enlace-de-salto {
     position: absolute;
     top: -100%;
@@ -263,9 +213,6 @@ button {
     top: var(--space-2);
 }
 
-/* ==========================================================================
-   6. CABECERA Y NAVEGACIÓN
-   ========================================================================== */
 .cabecera {
     position: sticky;
     top: 0;
@@ -291,7 +238,6 @@ button {
     text-decoration: none;
 }
 
-/* ---- Menú móvil y tema: controles de la cabecera ---- */
 .cabecera__controles {
     display: flex;
     align-items: center;
@@ -339,7 +285,6 @@ button {
     display: none;
 }
 
-/* Iconos de tema: sol en oscuro, luna en claro */
 .cambiar-tema__luna {
     display: none;
 }
@@ -352,7 +297,6 @@ button {
     display: block;
 }
 
-/* ---- Enlaces de navegación (compartidos con la muestra de #componentes) ---- */
 .navegacion ul {
     display: flex;
     flex-wrap: wrap;
@@ -376,7 +320,6 @@ button {
     color: var(--color-text);
 }
 
-/* ---- Navegación de la cabecera en móvil: panel desplegable ---- */
 .cabecera .navegacion {
     display: none;
     flex-direction: column;
@@ -405,9 +348,6 @@ button {
     padding: var(--space-3) 0;
 }
 
-/* ==========================================================================
-   7. BOTONES (.btn)
-   ========================================================================== */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -457,14 +397,10 @@ button {
     background-color: transparent;
 }
 
-/* ==========================================================================
-   8. SECCIONES Y HERO
-   ========================================================================== */
 main {
     padding-inline: var(--page-gutter);
 }
 
-/* Cada sección de contenido es una caja cuadrada dentro de la columna central */
 .seccion {
     padding: var(--section-padding) var(--space-8);
     border: 1px solid var(--color-border);
@@ -479,7 +415,6 @@ main {
     margin-bottom: var(--space-6);
 }
 
-/* Texto de introducción de las secciones */
 .seccion--sobre-mi > p,
 .seccion--componentes > p,
 .seccion--contacto > p {
@@ -491,7 +426,6 @@ main {
     margin-bottom: var(--space-8);
 }
 
-/* Hero: a pantalla completa, sin caja */
 .seccion--inicio {
     border: none;
     background-color: transparent;
@@ -526,9 +460,6 @@ main {
     margin-top: var(--space-4);
 }
 
-/* ==========================================================================
-   9. AVATAR
-   ========================================================================== */
 .avatar {
     margin-top: var(--space-8);
 }
@@ -538,7 +469,6 @@ main {
     height: 10rem;
     margin-inline: auto;
     border: 2px solid var(--color-border-strong);
-    border-radius: var(--radius-full);
     background-color: var(--color-surface-elevated);
     object-fit: cover;
 }
@@ -549,9 +479,6 @@ main {
     font-size: var(--text-sm);
 }
 
-/* ==========================================================================
-   10. HABILIDADES / BADGES
-   ========================================================================== */
 .seccion--sobre-mi h3 {
     margin-top: var(--space-10);
     margin-bottom: var(--space-4);
@@ -571,7 +498,6 @@ main {
     gap: var(--space-3);
 }
 
-/* Sprite de iconos: fuera de la vista, solo aloja los <symbol> */
 .sprite {
     position: absolute;
     width: 0;
@@ -588,7 +514,6 @@ main {
     stroke-linejoin: round;
 }
 
-/* Componente badge compartido: habilidades y etiquetas de tecnologías */
 .badge,
 .proyecto__tecnologias li {
     display: inline-flex;
@@ -603,9 +528,6 @@ main {
     font-weight: 500;
 }
 
-/* ==========================================================================
-   11. TARJETA DE PROYECTO (.proyecto)
-   ========================================================================== */
 .proyectos__lista {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
@@ -676,9 +598,6 @@ main {
     text-decoration: underline;
 }
 
-/* ==========================================================================
-   12. FORMULARIOS Y CONTACTO
-   ========================================================================== */
 .formulario {
     display: grid;
     grid-template-columns: 1fr;
@@ -735,7 +654,6 @@ main {
     box-shadow: 0 0 0 3px var(--color-focus-ring);
 }
 
-/* ---- Validación del formulario ---- */
 .formulario input[aria-invalid="true"],
 .formulario textarea[aria-invalid="true"] {
     border-color: var(--color-danger);
@@ -756,7 +674,6 @@ main {
     display: none;
 }
 
-/* ---- Datos de contacto ---- */
 .contacto__datos {
     margin-bottom: var(--space-8);
     font-style: normal;
@@ -785,9 +702,6 @@ main {
     letter-spacing: 0.08em;
 }
 
-/* ==========================================================================
-   13. GALERÍA DEL SISTEMA DE DISEÑO (#componentes)
-   ========================================================================== */
 .componente-grupo {
     margin-top: var(--space-16);
 }
@@ -806,7 +720,6 @@ main {
     letter-spacing: 0.08em;
 }
 
-/* ---- Colores ---- */
 .paleta {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
@@ -850,7 +763,6 @@ main {
     font-size: var(--text-xs);
 }
 
-/* ---- Tipografía ---- */
 .muestra-tipografia {
     display: grid;
     grid-template-columns: 4rem 1fr;
@@ -874,7 +786,6 @@ main {
     font-size: var(--text-xs);
 }
 
-/* ---- Espaciado ---- */
 .muestras-espaciado {
     display: grid;
     gap: var(--space-3);
@@ -912,7 +823,6 @@ main {
     font-size: var(--text-xs);
 }
 
-/* ---- Muestras de componentes ---- */
 .muestras-componentes {
     display: flex;
     flex-wrap: wrap;
@@ -935,9 +845,6 @@ main {
     background-color: var(--color-surface);
 }
 
-/* ==========================================================================
-   14. PIE DE PÁGINA
-   ========================================================================== */
 .pie-de-pagina {
     padding: var(--space-8) var(--page-gutter)
         var(--space-12);
@@ -947,10 +854,6 @@ main {
     text-align: center;
 }
 
-/* ==========================================================================
-   15. INTERACCIONES (revelado al hacer scroll)
-   ========================================================================== */
-/* Solo se oculta con JS activo: sin JS el contenido siempre es visible */
 .js .reveal {
     opacity: 0;
     transform: translateY(1rem);
@@ -963,10 +866,6 @@ main {
     transform: none;
 }
 
-/* ==========================================================================
-   16. RESPONSIVE (mobile-first)
-   ========================================================================== */
-/* Tableta */
 @media (min-width: 40rem) {
     .formulario {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -985,7 +884,6 @@ main {
     }
 }
 
-/* Escritorio */
 @media (min-width: 62rem) {
     .cabecera {
         gap: var(--space-8);
@@ -1024,7 +922,6 @@ main {
         text-align: left;
     }
 
-    /* Texto en la columna izquierda; el avatar ocupa la derecha a lo alto del bloque */
     .seccion--inicio > * {
         grid-column: 1;
     }
@@ -1048,7 +945,6 @@ main {
     }
 }
 
-/* Móvil pequeño: compacta el espaciado del sistema */
 @media (max-width: 40rem) {
     .seccion {
         padding-inline: var(--space-5);
@@ -1067,9 +963,6 @@ main {
     }
 }
 
-/* ==========================================================================
-   17. MOVIMIENTO REDUCIDO
-   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -1083,7 +976,6 @@ main {
         transition-duration: 0.01ms !important;
     }
 
-    /* Sin animaciones de revelado cuando se pide reducir el movimiento */
     .js .reveal {
         opacity: 1;
         transform: none;

@@ -10,9 +10,13 @@ Está hecho con HTML, CSS y JavaScript puros, sin frameworks ni herramientas de 
 | --- | --- |
 | ![Inicio en tema oscuro](capturas/inicio-oscuro.png) | ![Inicio en tema claro](capturas/inicio-claro.png) |
 
-![Sección de habilidades](capturas/habilidades.png)
+| Sobre mí | Habilidades |
+| --- | --- |
+| ![Sección sobre mí](capturas/sobre-mi.png) | ![Sección de habilidades](capturas/habilidades.png) |
 
 ![Sección de Design System](capturas/design-system.png)
+
+![Proyectos destacados](capturas/proyectos.png)
 
 ![Formulario de contacto con validación](capturas/contacto.png)
 

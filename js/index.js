@@ -1,18 +1,4 @@
-/* ============================================================================
-   PORTFOLIO — Interacciones
-   Vanilla JS, sin frameworks. Módulos independientes:
-     1. Tema claro/oscuro con persistencia en localStorage
-        (el tema inicial y la clase .js los fija el script inline del <head>)
-     2. Menú de navegación responsive
-     3. Revelado de contenido al hacer scroll (IntersectionObserver)
-     4. Validación del formulario de contacto
-   Sin JS habilitado el sitio sigue siendo completamente usable.
-   ========================================================================== */
 'use strict';
-
-/* ==========================================================================
-   1. TEMA CLARO/OSCURO
-   ========================================================================== */
 
 const TEMA_CLAVE = 'tema';
 const TEMA_OSCURO = 'dark';
@@ -44,7 +30,6 @@ function temaInicial() {
     return preferenciaClaro.matches ? TEMA_CLARO : TEMA_OSCURO;
 }
 
-/* Los valores hex de la paleta se leen de los tokens CSS del tema activo */
 function actualizarPaleta() {
     document.querySelectorAll('[data-token]').forEach((elemento) => {
         const valor = getComputedStyle(document.documentElement)
@@ -76,9 +61,7 @@ function alternarTema() {
     aplicarTema(nuevo);
     try {
         window.localStorage.setItem(TEMA_CLAVE, nuevo);
-    } catch {
-        /* Sin almacenamiento disponible: el tema se aplica solo en esta sesión */
-    }
+    } catch {}
 }
 
 function seguirPreferenciaSistema(evento) {
@@ -97,10 +80,6 @@ function inicializarTema() {
 
     escucharMq(preferenciaClaro, seguirPreferenciaSistema);
 }
-
-/* ==========================================================================
-   2. MENÚ DE NAVEGACIÓN RESPONSIVE
-   ========================================================================== */
 
 const escritorioMq = window.matchMedia('(min-width: 62rem)');
 
@@ -156,10 +135,6 @@ function inicializarMenu() {
     });
 }
 
-/* ==========================================================================
-   3. REVELADO DE CONTENIDO AL HACER SCROLL
-   ========================================================================== */
-
 const SELECTORES_REVEAL = [
     '.seccion:not(.seccion--inicio)',
     '.proyecto',
@@ -191,10 +166,6 @@ function inicializarReveal() {
     });
 }
 
-/* ==========================================================================
-   4. VALIDACIÓN DEL FORMULARIO DE CONTACTO
-   ========================================================================== */
-
 function mensajeDeError(campo) {
     const valor = campo.value.trim();
     if (campo.required && valor === '') {
@@ -216,7 +187,6 @@ function inicializarFormulario() {
     const campos = Array.from(formulario.querySelectorAll('input, textarea'));
     const estado = formulario.querySelector('.formulario__estado');
 
-    // Con JS se usan mensajes propios; sin JS sigue la validación nativa del navegador
     formulario.setAttribute('novalidate', '');
 
     const errores = new Map();
@@ -269,10 +239,6 @@ function inicializarFormulario() {
         }
     });
 }
-
-/* ==========================================================================
-   INICIALIZACIÓN
-   ========================================================================== */
 
 function inicializar() {
     inicializarTema();
